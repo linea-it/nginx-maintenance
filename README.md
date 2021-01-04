@@ -65,9 +65,10 @@ services:
 4) chmod +x init-letsencrypt.sh && ./init-letsencrypt.sh
 
 4) Depois de gerar os certificados, descomentar as linhas abaixo do docker-compose.yml
-
+```
   #command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+```
 
 
 
