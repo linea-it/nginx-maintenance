@@ -8,7 +8,7 @@
 3) Criar arquivos docker-compose.yml e app.conf
 
 ## Criar arquivo app.conf e colocar em ./data/nginx/app.conf
-
+```
 server {
     listen 80;
 
@@ -36,10 +36,10 @@ server {
         proxy_pass http://<HOSTNAME>; #for demo purposes
     }
 }
-
+```
 
 ## Criar arquivo docker-compose.yml
-
+```
 version: '3'
 services:
   nginx:
@@ -60,7 +60,7 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
+```
 
 4) chmod +x init-letsencrypt.sh && ./init-letsencrypt.sh
 
