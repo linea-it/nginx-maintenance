@@ -3,131 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manutenção - LIneA</title>
+    <title>Manutenção Programada - LIneA</title>
     <style>
-        /* Variáveis de Cor */
-        [data-theme="dark"] {
+        :root {
+            --accent: #00e6e6;
+            --yellow: #ffcc00;
             --bg: #0a0e14;
             --text: #ffffff;
-            --subtext: #aaaaaa;
             --card: rgba(255, 255, 255, 0.05);
-            --border: rgba(0, 230, 230, 0.3);
-            --logo-display-white: block;
-            --logo-display-color: none;
-        }
-        [data-theme="light"] {
-            --bg: #f5f7fa;
-            --text: #0a0e14;
-            --subtext: #555555;
-            --card: #ffffff;
-            --border: #dddddd;
-            --logo-display-white: none;
-            --logo-display-color: block;
+            --logo-filter: brightness(0) invert(1); /* Torna a logo colorida em branca */
         }
 
-        :root { --accent: #008a8a; --yellow: #ffcc00; }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #0a0e14;
+            --card: #f0f2f5;
+            --logo-filter: none; /* Mantém a logo original */
+        }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; background: var(--bg); 
-            color: var(--text); margin: 0; transition: background 0.3s, color 0.3s;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background: var(--bg); color: var(--text); 
+            margin: 0; transition: 0.3s; text-align: center;
         }
+
+        /* BANNER DE STATUS */
+        .status-header {
+            background: var(--yellow); color: #000;
+            padding: 15px; font-weight: bold;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+
+        .logo-box { margin: 20px 0 40px; }
+        .logo-img { 
+            max-width: 220px; 
+            filter: var(--logo-filter);
+            transition: 0.3s;
+        }
+
+        /* ÁREA DE MENSAGEM */
+        .maint-info { margin-bottom: 40px; }
+        .maint-info h1 { font-size: 2rem; margin: 10px 0; }
+        .maint-info p { opacity: 0.8; line-height: 1.6; }
         
-        .banner { width: 100%; background: var(--yellow); color: #000; padding: 10px 0; font-weight: bold; text-align: center; font-size: 0.8rem; text-transform: uppercase; }
-
-        .theme-toggle {
-            position: absolute; top: 50px; right: 20px;
-            background: var(--card); border: 1px solid var(--border);
-            color: var(--text); padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem;
+        .status-badge {
+            display: inline-block; padding: 5px 15px; border-radius: 20px;
+            background: rgba(255, 204, 0, 0.2); border: 1px solid var(--yellow);
+            color: var(--yellow); font-size: 0.8rem; margin-top: 10px;
         }
 
-        .container { max-width: 500px; width: 90%; padding: 60px 20px; text-align: center; }
-        
-        /* Troca Automática da Logo */
-        .logo-white { display: var(--logo-display-white); width: 200px; margin: 0 auto; }
-        .logo-color { display: var(--logo-display-color); width: 200px; margin: 0 auto; }
-
-        .game-box { 
-            background: var(--card); padding: 20px; border-radius: 12px;
-            border: 1px solid var(--border); margin: 30px 0;
+        /* JOGO */
+        .game-area {
+            background: var(--card); border-radius: 16px; padding: 25px;
+            border: 1px solid rgba(128,128,128,0.2);
         }
-        #grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 250px; margin: 0 auto; }
-        .cell { 
-            aspect-ratio: 1; background: var(--bg); border-radius: 4px; 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; border: 1px solid var(--border);
+        #grid { 
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; 
+            max-width: 280px; margin: 20px auto; 
+        }
+        .cell {
+            aspect-ratio: 1; background: var(--bg); border: 1px solid rgba(128,128,128,0.3);
+            border-radius: 8px; cursor: pointer; display: flex; align-items: center; 
+            justify-content: center; font-size: 1.2rem; transition: 0.2s;
+        }
+        .cell:hover { transform: scale(1.05); border-color: var(--accent); }
+
+        .btn-theme {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--text); color: var(--bg);
+            border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;
+            font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .social { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .social a { color: var(--text); text-decoration: none; font-size: 0.75rem; opacity: 0.7; }
-        .social a:hover { opacity: 1; color: var(--accent); }
+        .social { margin-top: 40px; opacity: 0.6; }
+        .social a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <div class="banner">⚠️ Manutenção Programada</div>
-
-    <button class="theme-toggle" onclick="toggleTheme()">🌓 Alternar Tema</button>
+    <div class="status-header">
+        <span>⚠️</span> TRABALHO DE CAMPO NO AMBIENTE DO LINEA EM ANDAMENTO
+    </div>
 
     <div class="container">
-        <img src="https://www.linea.org.br/wp-content/uploads/2021/05/logo_linea_negativo.png" class="logo-white" alt="LIneA">
-        <img src="https://www.linea.org.br/wp-content/uploads/2021/05/logo_linea_original.png" class="logo-color" alt="LIneA">
-        
-        <h1 style="margin-top:30px; font-size: 1.5rem;">Sistemas em calibração</h1>
-        <p style="color: var(--subtext);">Estamos otimizando nossos servidores. Enquanto espera, mapeie 3 exoplanetas:</p>
+        <div class="logo-box">
+            <img src="https://www.linea.org.br/wp-content/uploads/2021/05/logo_linea_original.png" 
+                 alt="LIneA" class="logo-img" 
+                 onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
+            <h2 id="logo-text" style="display:none; letter-spacing: 5px;">LIneA</h2>
+        </div>
 
-        <div class="game-box">
+        <div class="maint-info">
+            <h1>Estamos Offline</h1>
+            <p>Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.</p>
+            <div class="status-badge">Previsão de Retorno: Hoje</div>
+        </div>
+
+        <div class="game-area">
+            <h3 style="margin:0; font-size: 1rem;">🛰️ Missão de Espera: Caça aos Exoplanetas</h3>
+            <p style="font-size: 0.8rem; margin: 10px 0;">Localize 3 alvos ocultos no quadrante:</p>
             <div id="grid"></div>
-            <p style="font-size: 0.8rem; margin-top: 15px;">Encontrados: <span id="score">0</span>/3</p>
+            <div id="msg" style="font-size: 0.9rem; color: var(--accent);">Aguardando varredura...</div>
         </div>
 
         <div class="social">
-            <a href="https://github.com/linea-it">GitHub</a>
-            <a href="https://www.instagram.com/linea_mcti/">Instagram</a>
-            <a href="https://twitter.com/linea_mcti">X / Twitter</a>
+            <a href="https://github.com/linea-it">GitHub</a> | 
+            <a href="https://twitter.com/linea_mcti">X / Twitter</a> | 
+            <a href="mailto:suporte@linea.org.br">Suporte</a>
         </div>
     </div>
 
+    <button class="btn-theme" onclick="toggle()">Trocar Tema</button>
+
     <script>
-        // Lógica do Tema
-        function toggleTheme() {
-            const body = document.documentElement;
-            const current = body.getAttribute('data-theme');
-            body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        function toggle() {
+            const h = document.documentElement;
+            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         }
 
-        // Joguinho
-        let planets = [];
+        let targets = [];
         let score = 0;
-        function init() {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = ''; planets = []; score = 0;
-            while(planets.length < 3) {
+        function setup() {
+            const g = document.getElementById('grid');
+            g.innerHTML = ''; targets = []; score = 0;
+            while(targets.length < 3) {
                 let r = Math.floor(Math.random() * 25);
-                if(!planets.includes(r)) planets.push(r);
+                if(!targets.includes(r)) targets.push(r);
             }
             for(let i=0; i<25; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'cell';
-                cell.innerText = '🔭';
-                cell.onclick = function() {
-                    if(this.dataset.done) return;
-                    this.dataset.done = true;
-                    if(planets.includes(i)) {
-                        this.innerText = '🪐';
-                        this.style.background = 'var(--accent)';
+                const c = document.createElement('div');
+                c.className = 'cell'; c.innerText = '✨';
+                c.onclick = function() {
+                    if(this.dataset.hit) return;
+                    this.dataset.hit = true;
+                    if(targets.includes(i)) {
+                        this.innerText = '🪐'; this.style.background = 'rgba(0,230,230,0.3)';
                         score++;
-                        document.getElementById('score').innerText = score;
-                        if(score === 3) alert('Descoberta Científica! Todos os planetas mapeados.');
+                        document.getElementById('msg').innerText = `Alvos encontrados: ${score}/3`;
+                        if(score === 3) document.getElementById('msg').innerText = '✅ Quadrante mapeado com sucesso!';
                     } else {
-                        this.innerText = '•';
-                        this.style.opacity = '0.3';
+                        this.innerText = '◦'; this.style.opacity = '0.4';
                     }
                 };
-                grid.appendChild(cell);
+                g.appendChild(c);
             }
         }
-        init();
+        setup();
     </script>
 </body>
 </html>
