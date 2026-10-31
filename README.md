@@ -4,50 +4,37 @@ Nginx estático para exibir enquanto um serviço web está em manutenção. Sobe
 
 A página responde **503** de propósito: o navegador mostra o aviso, e monitores entendem que o serviço está indisponível. `/healthz` responde 200 só para o healthcheck do container.
 
+O visual segue o aviso usado em [canvas.linea.org.br](https://canvas.linea.org.br/): fundo branco, título, texto, assinatura, marca do LIneA, ícones e dois links.
+
 ## Editar o texto
 
 O conteúdo fica em [`html/content.json`](html/content.json). Salve o arquivo e atualize o navegador. Não é preciso reiniciar o container.
 
 | Campo | Função |
 | --- | --- |
-| `organizacao` | Nome no alto da página |
-| `servico` | Nome da aplicação. Vazio omite a linha |
-| `logo` | Arquivo em `html/` ou URL `http(s)`. Vazio usa só o nome |
-| `faixa` | Tarja de status. Vazio omite a tarja |
 | `titulo` | Título principal |
-| `mensagem` | Texto. Uma linha em branco começa outro parágrafo |
-| `previsaoRotulo` | Rótulo da previsão |
-| `previsaoTexto` | Previsão em texto livre, por exemplo `Hoje, 18h` |
-| `previsao` | Data ISO 8601, por exemplo `2026-11-01T18:00:00-03:00`. Liga a contagem. Vazio omite a contagem |
-| `mostrarDestaques` | `false` esconde as notícias |
-| `mostrarJogo` | `false` esconde o botão do jogo |
-| `servicosTitulo` | Título do atalho para outros serviços |
-| `servicosTexto` | Texto desse atalho. Vazio omite a frase |
-| `servicos` | Lista de `{ "rotulo", "url" }`. Vazio esconde o bloco. Na instância da própria Science Platform, deixe vazio |
-| `links` | Lista de `{ "rotulo", "url" }` com `http`, `https` ou `mailto` |
-
-Enquanto [www.linea.org.br](https://www.linea.org.br) responde, a página mostra as notícias recentes de lá, com link para a matéria. As redes do rodapé são as mesmas do site. Se o site não responder, entram as notas de [`html/destaques.json`](html/destaques.json). O jogo só abre em "Jogar caça aos exoplanetas".
+| `mensagem` | Parágrafo. `{contato}` vira o link de contato |
+| `contatoRotulo` | Texto desse link, por exemplo `contact us` |
+| `contatoUrl` | `mailto:` ou `http(s)` |
+| `assinatura` | Linha à direita, por exemplo `— LIneA IT Team` |
+| `instituicao` | Texto ao lado da marca. Uma quebra de linha no JSON vira outra linha na página |
+| `logo` | Arquivo em `html/images/` ou URL `http(s)` |
+| `redes` | Lista de `{ "rotulo", "url", "icone" }`. Vazio esconde os ícones |
+| `rodape` | Lista de `{ "rotulo", "url" }`. Vazio esconde os links de baixo |
 
 Exemplo de uma instância só para o catálogo:
 
 ```json
 {
-  "organizacao": "LIneA",
-  "servico": "Catálogo",
-  "faixa": "Manutenção programada",
-  "titulo": "Catálogo indisponível",
-  "mensagem": "O catálogo volta ao final desta janela.",
-  "previsaoRotulo": "Previsão de retorno",
-  "previsao": "2026-11-01T18:00:00-03:00",
-  "previsaoTexto": "1º de novembro, 18h",
-  "mostrarJogo": false,
-  "links": [
-    { "rotulo": "Suporte", "url": "mailto:suporte@linea.org.br" }
-  ]
+  "titulo": "Catalog unavailable",
+  "mensagem": "The catalog is under maintenance. If you need assistance, please feel free to {contato}.",
+  "contatoRotulo": "contact us",
+  "contatoUrl": "mailto:helpdesk@linea.org.br",
+  "assinatura": "— LIneA IT Team"
 }
 ```
 
-O JSON precisa ser válido (sem vírgula sobrando). Se o JSON estiver inválido, a página continua com o texto padrão que já está no HTML.
+O JSON precisa ser válido (sem vírgula sobrando). Se o JSON estiver inválido, a página continua com o texto que já está no HTML.
 
 ## Subir
 

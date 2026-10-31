@@ -1,101 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Estamos offline — LIneA</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>We will be back soon — LIneA</title>
+  <link rel="icon" href="/images/favicon.png" type="image/png">
   <!-- Textos em html/content.json. Este arquivo é só a estrutura da página. -->
-  <script src="/theme.js"></script>
   <style>
     <!--# include file="styles.css" -->
   </style>
 </head>
 <body>
-  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
-  <p class="banner" id="faixa" role="status">
-    <span class="dot" aria-hidden="true"></span>
-    <span id="faixa-texto">Trabalho de campo no ambiente do LIneA em andamento</span>
-  </p>
+  <header class="card-header">
+    <h1 id="titulo">We will be back soon</h1>
+  </header>
 
-  <main class="shell" id="conteudo">
-    <article class="card">
-      <div class="brand">
-        <img class="logo" id="logo" alt="" hidden>
-        <p class="wordmark" id="marca">
-          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 2.2 13.8 9.1 20.8 10.5 13.8 11.9 12 18.8 10.2 11.9 3.2 10.5 10.2 9.1Z"/>
-          </svg>
-          <span id="organizacao">LIneA</span>
-        </p>
-        <p class="service" id="servico" hidden></p>
-      </div>
+  <div class="mensagem">
+    <p class="info" id="mensagem">We apologize for the inconvenience, but we are currently performing maintenance on our platform. If you need assistance, please feel free to <a id="contato" href="mailto:helpdesk@linea.org.br">contact us</a>. We'll be back online shortly. Thank you for your patience!</p>
+    <p class="assinatura" id="assinatura">— LIneA IT Team</p>
+  </div>
 
-      <h1 id="titulo">Estamos offline</h1>
-      <div class="message" id="mensagem">
-        <p>Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.</p>
-      </div>
+  <div class="marca">
+    <div class="logo">
+      <img id="logo" src="/images/linea-logo.png" alt="LIneA">
+    </div>
+    <p class="text" id="instituicao">Associação Laboratório
+Interinstitucional de
+e-Astronomia LIneA</p>
+  </div>
 
-      <section class="eta" id="previsao" aria-labelledby="previsao-rotulo">
-        <p class="eta-label" id="previsao-rotulo">Previsão de retorno</p>
-        <p class="eta-value" id="previsao-texto">Hoje</p>
-        <p class="eta-count" id="contagem" hidden aria-live="polite"></p>
-      </section>
+  <nav class="redes" id="redes" aria-label="Redes sociais">
+    <a href="https://www.linkedin.com/company/linea-astronomia/" target="_blank" rel="noopener noreferrer"><img src="/images/linkedin-logo.png" alt="LinkedIn"></a>
+    <a href="https://x.com/linea_org" target="_blank" rel="noopener noreferrer"><img src="/images/twitter-logo.png" alt="X"></a>
+    <a href="https://www.instagram.com/linea_org/" target="_blank" rel="noopener noreferrer"><img src="/images/instagram-logo.png" alt="Instagram"></a>
+    <a href="https://www.youtube.com/@linea_org" target="_blank" rel="noopener noreferrer"><img src="/images/youtube-logo.png" alt="YouTube"></a>
+    <a href="https://www.facebook.com/linea.org/" target="_blank" rel="noopener noreferrer"><img src="/images/facebook-logo.png" alt="Facebook"></a>
+  </nav>
 
-      <section class="servicos" id="servicos" aria-labelledby="servicos-titulo">
-        <p class="eta-label" id="servicos-titulo">Ainda disponível</p>
-        <p id="servicos-texto">Se este serviço está em manutenção, a Science Platform pode continuar no ar.</p>
-        <div class="destaque-actions" id="servicos-links">
-          <a href="https://scienceplatform.linea.org.br" target="_blank" rel="noopener noreferrer">Science Platform</a>
-        </div>
-      </section>
+  <nav class="rodape" id="rodape" aria-label="Site">
+    <a href="https://status.linea.org.br/">status.linea.org.br</a>
+    <a href="https://www.linea.org.br/" target="_blank" rel="noopener noreferrer">www.linea.org.br</a>
+  </nav>
 
-      <div class="espera" id="espera" hidden>
-        <article class="destaque" id="destaque" hidden aria-live="polite" aria-labelledby="destaque-titulo">
-          <p class="eta-label" id="destaque-kicker">Notícias do LIneA</p>
-          <p class="destaque-data" id="destaque-data" hidden></p>
-          <h2 id="destaque-titulo"></h2>
-          <img class="destaque-img" id="destaque-imagem" alt="" hidden>
-          <p id="destaque-texto"></p>
-          <div class="destaque-actions">
-            <a id="destaque-link" hidden></a>
-            <button class="text-btn" id="outro-destaque" type="button">Outra notícia</button>
-          </div>
-        </article>
-        <p class="play-row" id="convite-jogo" hidden>
-          <button class="text-btn" id="abrir-jogo" type="button" aria-expanded="false" aria-controls="jogo">Jogar caça aos exoplanetas</button>
-        </p>
-        <section class="game" id="jogo" aria-labelledby="jogo-titulo" hidden>
-          <div class="game-head">
-            <div>
-              <h2 id="jogo-titulo">Caça aos exoplanetas</h2>
-              <p class="game-copy" id="jogo-msg" aria-live="polite">Três planetas estão escondidos na grade.</p>
-            </div>
-            <button class="text-btn" id="reiniciar" type="button">Reiniciar</button>
-          </div>
-          <div class="grid" id="grid" role="group" aria-label="Grade de setores"></div>
-        </section>
-      </div>
-
-      <div class="footer">
-        <nav class="links" id="links" aria-label="Contatos">
-          <a href="https://www.instagram.com/linea_org/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://www.youtube.com/@linea_org" target="_blank" rel="noopener noreferrer">YouTube</a>
-          <a href="https://x.com/linea_org" target="_blank" rel="noopener noreferrer">X</a>
-          <a href="https://www.facebook.com/linea.org/" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://www.linkedin.com/company/linea-astronomia/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://bsky.app/profile/linea-org.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
-          <a href="https://github.com/linea-it" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:suporte@linea.org.br">Suporte</a>
-        </nav>
-        <button class="theme" id="tema" type="button">Tema claro</button>
-      </div>
-      <noscript>
-        <p class="noscript">A contagem regressiva e as notícias recentes precisam de JavaScript. O aviso de manutenção e o link da Science Platform continuam visíveis.</p>
-      </noscript>
-    </article>
-  </main>
   <script src="/app.js"></script>
 </body>
 </html>

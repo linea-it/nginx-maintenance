@@ -1,29 +1,21 @@
 {
-  "_comentario": "Textos da página. Salve e atualize o navegador; não é preciso reiniciar o container. previsao vazio omite a contagem. servicos vazio esconde o atalho da Science Platform. mostrarDestaques false esconde as notícias. mostrarJogo false esconde o botão do jogo. Links aceitam http, https e mailto.",
-  "organizacao": "LIneA",
-  "servico": "",
-  "logo": "",
-  "faixa": "Trabalho de campo no ambiente do LIneA em andamento",
-  "titulo": "Estamos offline",
-  "mensagem": "Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.",
-  "previsaoRotulo": "Previsão de retorno",
-  "previsao": "",
-  "previsaoTexto": "Hoje",
-  "mostrarDestaques": true,
-  "mostrarJogo": true,
-  "servicosTitulo": "Ainda disponível",
-  "servicosTexto": "Se este serviço está em manutenção, a Science Platform pode continuar no ar.",
-  "servicos": [
-    { "rotulo": "Science Platform", "url": "https://scienceplatform.linea.org.br" }
+  "_comentario": "Textos da página. Salve e atualize o navegador; não é preciso reiniciar o container. Em mensagem, {contato} vira o link contatoRotulo. redes e rodape vazios escondem esses blocos. icone é um arquivo em html/images/ ou uma URL http(s).",
+  "titulo": "We will be back soon",
+  "mensagem": "We apologize for the inconvenience, but we are currently performing maintenance on our platform. If you need assistance, please feel free to {contato}. We'll be back online shortly. Thank you for your patience!",
+  "contatoRotulo": "contact us",
+  "contatoUrl": "mailto:helpdesk@linea.org.br",
+  "assinatura": "— LIneA IT Team",
+  "instituicao": "Associação Laboratório\nInterinstitucional de\ne-Astronomia LIneA",
+  "logo": "/images/linea-logo.png",
+  "redes": [
+    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/linea-astronomia/", "icone": "/images/linkedin-logo.png" },
+    { "rotulo": "X", "url": "https://x.com/linea_org", "icone": "/images/twitter-logo.png" },
+    { "rotulo": "Instagram", "url": "https://www.instagram.com/linea_org/", "icone": "/images/instagram-logo.png" },
+    { "rotulo": "YouTube", "url": "https://www.youtube.com/@linea_org", "icone": "/images/youtube-logo.png" },
+    { "rotulo": "Facebook", "url": "https://www.facebook.com/linea.org/", "icone": "/images/facebook-logo.png" }
   ],
-  "links": [
-    { "rotulo": "Instagram", "url": "https://www.instagram.com/linea_org/" },
-    { "rotulo": "YouTube", "url": "https://www.youtube.com/@linea_org" },
-    { "rotulo": "X", "url": "https://x.com/linea_org" },
-    { "rotulo": "Facebook", "url": "https://www.facebook.com/linea.org/" },
-    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/linea-astronomia/" },
-    { "rotulo": "Bluesky", "url": "https://bsky.app/profile/linea-org.bsky.social" },
-    { "rotulo": "GitHub", "url": "https://github.com/linea-it" },
-    { "rotulo": "Suporte", "url": "mailto:suporte@linea.org.br" }
+  "rodape": [
+    { "rotulo": "status.linea.org.br", "url": "https://status.linea.org.br/" },
+    { "rotulo": "www.linea.org.br", "url": "https://www.linea.org.br/" }
   ]
 }
