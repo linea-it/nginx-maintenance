@@ -1,0 +1,29 @@
+{
+  "_comentario": "Textos da página. Salve e atualize o navegador; não é preciso reiniciar o container. previsao vazio omite a contagem. servicos vazio esconde o atalho da Science Platform. mostrarDestaques false esconde as notícias. mostrarJogo false esconde o botão do jogo. Links aceitam http, https e mailto.",
+  "organizacao": "LIneA",
+  "servico": "",
+  "logo": "",
+  "faixa": "Trabalho de campo no ambiente do LIneA em andamento",
+  "titulo": "Estamos offline",
+  "mensagem": "Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.",
+  "previsaoRotulo": "Previsão de retorno",
+  "previsao": "",
+  "previsaoTexto": "Hoje",
+  "mostrarDestaques": true,
+  "mostrarJogo": true,
+  "servicosTitulo": "Ainda disponível",
+  "servicosTexto": "Se este serviço está em manutenção, a Science Platform pode continuar no ar.",
+  "servicos": [
+    { "rotulo": "Science Platform", "url": "https://scienceplatform.linea.org.br" }
+  ],
+  "links": [
+    { "rotulo": "Instagram", "url": "https://www.instagram.com/linea_org/" },
+    { "rotulo": "YouTube", "url": "https://www.youtube.com/@linea_org" },
+    { "rotulo": "X", "url": "https://x.com/linea_org" },
+    { "rotulo": "Facebook", "url": "https://www.facebook.com/linea.org/" },
+    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/linea-astronomia/" },
+    { "rotulo": "Bluesky", "url": "https://bsky.app/profile/linea-org.bsky.social" },
+    { "rotulo": "GitHub", "url": "https://github.com/linea-it" },
+    { "rotulo": "Suporte", "url": "mailto:suporte@linea.org.br" }
+  ]
+}

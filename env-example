@@ -1,20 +1,11 @@
-#----------------------------#
-# Configuração das Variáveis #
-#----------------------------#
+# Copie para .env na mesma pasta do docker-compose.yml.
+# O compose lê .env ao subir; html/content.json guarda os textos.
 
-#----------------------#
-# Caminho da Aplicação #
-#----------------------#
-APPLICATION=./htdocs
+# Porta no servidor. O proxy das aplicações aponta para ela.
+HTTP_PORT=7777
 
-#-----------------------------#
-# Customização dos Containers #
-#-----------------------------#
+# 127.0.0.1 se só o proxy neste host precisar alcançar a página.
+HTTP_BIND=0.0.0.0
 
-#-------#
-# NGINX #
-#-------#
-NGINX_HOST_HTTP_PORT=80
-NGINX_HOST_HTTPS_PORT=443
-NGINX_HOST_LOG_PATH=./nginx/logs/
-NGINX_SITES_PATH=./nginx/sites/
+# Mude o nome quando houver uma instância por aplicação.
+CONTAINER_NAME=nginx-maintenance

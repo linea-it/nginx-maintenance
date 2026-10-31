@@ -1,156 +1,101 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manutenção Programada - LIneA</title>
-    <style>
-        :root {
-            --accent: #00e6e6;
-            --yellow: #ffcc00;
-            --bg: #0a0e14;
-            --text: #ffffff;
-            --card: rgba(255, 255, 255, 0.05);
-            --logo-filter: brightness(0) invert(1); /* Torna a logo colorida em branca */
-        }
-
-        [data-theme="light"] {
-            --bg: #ffffff;
-            --text: #0a0e14;
-            --card: #f0f2f5;
-            --logo-filter: none; /* Mantém a logo original */
-        }
-
-        body { 
-            font-family: 'Segoe UI', system-ui, sans-serif; 
-            background: var(--bg); color: var(--text); 
-            margin: 0; transition: 0.3s; text-align: center;
-        }
-
-        /* BANNER DE STATUS */
-        .status-header {
-            background: var(--yellow); color: #000;
-            padding: 15px; font-weight: bold;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
-
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-
-        .logo-box { margin: 20px 0 40px; }
-        .logo-img { 
-            max-width: 220px; 
-            filter: var(--logo-filter);
-            transition: 0.3s;
-        }
-
-        /* ÁREA DE MENSAGEM */
-        .maint-info { margin-bottom: 40px; }
-        .maint-info h1 { font-size: 2rem; margin: 10px 0; }
-        .maint-info p { opacity: 0.8; line-height: 1.6; }
-        
-        .status-badge {
-            display: inline-block; padding: 5px 15px; border-radius: 20px;
-            background: rgba(255, 204, 0, 0.2); border: 1px solid var(--yellow);
-            color: var(--yellow); font-size: 0.8rem; margin-top: 10px;
-        }
-
-        /* JOGO */
-        .game-area {
-            background: var(--card); border-radius: 16px; padding: 25px;
-            border: 1px solid rgba(128,128,128,0.2);
-        }
-        #grid { 
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; 
-            max-width: 280px; margin: 20px auto; 
-        }
-        .cell {
-            aspect-ratio: 1; background: var(--bg); border: 1px solid rgba(128,128,128,0.3);
-            border-radius: 8px; cursor: pointer; display: flex; align-items: center; 
-            justify-content: center; font-size: 1.2rem; transition: 0.2s;
-        }
-        .cell:hover { transform: scale(1.05); border-color: var(--accent); }
-
-        .btn-theme {
-            position: fixed; bottom: 20px; right: 20px;
-            background: var(--text); color: var(--bg);
-            border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;
-            font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .social { margin-top: 40px; opacity: 0.6; }
-        .social a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Estamos offline — LIneA</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- Textos em html/content.json. Este arquivo é só a estrutura da página. -->
+  <script src="/theme.js"></script>
+  <style>
+    <!--# include file="styles.css" -->
+  </style>
 </head>
 <body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <p class="banner" id="faixa" role="status">
+    <span class="dot" aria-hidden="true"></span>
+    <span id="faixa-texto">Trabalho de campo no ambiente do LIneA em andamento</span>
+  </p>
 
-    <div class="status-header">
-        <span>⚠️</span> TRABALHO DE CAMPO NO AMBIENTE DO LINEA EM ANDAMENTO
-    </div>
+  <main class="shell" id="conteudo">
+    <article class="card">
+      <div class="brand">
+        <img class="logo" id="logo" alt="" hidden>
+        <p class="wordmark" id="marca">
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2.2 13.8 9.1 20.8 10.5 13.8 11.9 12 18.8 10.2 11.9 3.2 10.5 10.2 9.1Z"/>
+          </svg>
+          <span id="organizacao">LIneA</span>
+        </p>
+        <p class="service" id="servico" hidden></p>
+      </div>
 
-    <div class="container">
-        <div class="logo-box">
-            <img src="https://www.linea.org.br/wp-content/uploads/2021/05/logo_linea_original.png" 
-                 alt="LIneA" class="logo-img" 
-                 onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
-            <h2 id="logo-text" style="display:none; letter-spacing: 5px;">LIneA</h2>
+      <h1 id="titulo">Estamos offline</h1>
+      <div class="message" id="mensagem">
+        <p>Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.</p>
+      </div>
+
+      <section class="eta" id="previsao" aria-labelledby="previsao-rotulo">
+        <p class="eta-label" id="previsao-rotulo">Previsão de retorno</p>
+        <p class="eta-value" id="previsao-texto">Hoje</p>
+        <p class="eta-count" id="contagem" hidden aria-live="polite"></p>
+      </section>
+
+      <section class="servicos" id="servicos" aria-labelledby="servicos-titulo">
+        <p class="eta-label" id="servicos-titulo">Ainda disponível</p>
+        <p id="servicos-texto">Se este serviço está em manutenção, a Science Platform pode continuar no ar.</p>
+        <div class="destaque-actions" id="servicos-links">
+          <a href="https://scienceplatform.linea.org.br" target="_blank" rel="noopener noreferrer">Science Platform</a>
         </div>
+      </section>
 
-        <div class="maint-info">
-            <h1>Estamos Offline</h1>
-            <p>Nossa infraestrutura está passando por atualizações essenciais para garantir a melhor performance nas suas pesquisas astronômicas.</p>
-            <div class="status-badge">Previsão de Retorno: Hoje</div>
-        </div>
+      <div class="espera" id="espera" hidden>
+        <article class="destaque" id="destaque" hidden aria-live="polite" aria-labelledby="destaque-titulo">
+          <p class="eta-label" id="destaque-kicker">Notícias do LIneA</p>
+          <p class="destaque-data" id="destaque-data" hidden></p>
+          <h2 id="destaque-titulo"></h2>
+          <img class="destaque-img" id="destaque-imagem" alt="" hidden>
+          <p id="destaque-texto"></p>
+          <div class="destaque-actions">
+            <a id="destaque-link" hidden></a>
+            <button class="text-btn" id="outro-destaque" type="button">Outra notícia</button>
+          </div>
+        </article>
+        <p class="play-row" id="convite-jogo" hidden>
+          <button class="text-btn" id="abrir-jogo" type="button" aria-expanded="false" aria-controls="jogo">Jogar caça aos exoplanetas</button>
+        </p>
+        <section class="game" id="jogo" aria-labelledby="jogo-titulo" hidden>
+          <div class="game-head">
+            <div>
+              <h2 id="jogo-titulo">Caça aos exoplanetas</h2>
+              <p class="game-copy" id="jogo-msg" aria-live="polite">Três planetas estão escondidos na grade.</p>
+            </div>
+            <button class="text-btn" id="reiniciar" type="button">Reiniciar</button>
+          </div>
+          <div class="grid" id="grid" role="group" aria-label="Grade de setores"></div>
+        </section>
+      </div>
 
-        <div class="game-area">
-            <h3 style="margin:0; font-size: 1rem;">🛰️ Missão de Espera: Caça aos Exoplanetas</h3>
-            <p style="font-size: 0.8rem; margin: 10px 0;">Localize 3 alvos ocultos no quadrante:</p>
-            <div id="grid"></div>
-            <div id="msg" style="font-size: 0.9rem; color: var(--accent);">Aguardando varredura...</div>
-        </div>
-
-        <div class="social">
-            <a href="https://github.com/linea-it">GitHub</a> | 
-            <a href="https://twitter.com/linea_mcti">X / Twitter</a> | 
-            <a href="mailto:suporte@linea.org.br">Suporte</a>
-        </div>
-    </div>
-
-    <button class="btn-theme" onclick="toggle()">Trocar Tema</button>
-
-    <script>
-        function toggle() {
-            const h = document.documentElement;
-            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        }
-
-        let targets = [];
-        let score = 0;
-        function setup() {
-            const g = document.getElementById('grid');
-            g.innerHTML = ''; targets = []; score = 0;
-            while(targets.length < 3) {
-                let r = Math.floor(Math.random() * 25);
-                if(!targets.includes(r)) targets.push(r);
-            }
-            for(let i=0; i<25; i++) {
-                const c = document.createElement('div');
-                c.className = 'cell'; c.innerText = '✨';
-                c.onclick = function() {
-                    if(this.dataset.hit) return;
-                    this.dataset.hit = true;
-                    if(targets.includes(i)) {
-                        this.innerText = '🪐'; this.style.background = 'rgba(0,230,230,0.3)';
-                        score++;
-                        document.getElementById('msg').innerText = `Alvos encontrados: ${score}/3`;
-                        if(score === 3) document.getElementById('msg').innerText = '✅ Quadrante mapeado com sucesso!';
-                    } else {
-                        this.innerText = '◦'; this.style.opacity = '0.4';
-                    }
-                };
-                g.appendChild(c);
-            }
-        }
-        setup();
-    </script>
+      <div class="footer">
+        <nav class="links" id="links" aria-label="Contatos">
+          <a href="https://www.instagram.com/linea_org/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.youtube.com/@linea_org" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://x.com/linea_org" target="_blank" rel="noopener noreferrer">X</a>
+          <a href="https://www.facebook.com/linea.org/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.linkedin.com/company/linea-astronomia/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://bsky.app/profile/linea-org.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
+          <a href="https://github.com/linea-it" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:suporte@linea.org.br">Suporte</a>
+        </nav>
+        <button class="theme" id="tema" type="button">Tema claro</button>
+      </div>
+      <noscript>
+        <p class="noscript">A contagem regressiva e as notícias recentes precisam de JavaScript. O aviso de manutenção e o link da Science Platform continuam visíveis.</p>
+      </noscript>
+    </article>
+  </main>
+  <script src="/app.js"></script>
 </body>
 </html>
