@@ -44,6 +44,21 @@ body {
   white-space: nowrap;
 }
 
+.janela {
+  margin-top: 1.5rem;
+  font-size: 18px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.janela p {
+  margin: 0.25rem 0;
+}
+
+.janela .rotulo {
+  font-weight: 700;
+}
+
 .assinatura {
   margin: 1.6rem 0 2.8rem;
   font-size: 20px;
@@ -100,6 +115,7 @@ body {
 
 @media (max-width: 639px) {
   .info,
+  .janela,
   .assinatura,
   .text,
   .rodape {

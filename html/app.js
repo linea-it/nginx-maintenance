@@ -4,6 +4,8 @@
     mensagem: "We apologize for the inconvenience, but we are currently performing maintenance on our platform. If you need assistance, please feel free to {contato}. We'll be back online shortly. Thank you for your patience!",
     contatoRotulo: "contact us",
     contatoUrl: "mailto:helpdesk@linea.org.br",
+    periodo: { rotulo: "Maintenance window", inicio: "", fim: "", texto: "" },
+    retorno: { rotulo: "Expected return", quando: "", texto: "" },
     assinatura: "— LIneA IT Team",
     instituicao: "Associação Laboratório\nInterinstitucional de\ne-Astronomia LIneA",
     logo: "/images/linea-logo.png",
@@ -34,6 +36,63 @@
     if (/^https?:\/\//i.test(value)) return value;
     if (value.charAt(0) !== "/") value = "/" + value;
     return value;
+  }
+
+  function formatWhen(value) {
+    if (typeof value !== "string") return "";
+    var raw = value.trim();
+    if (!raw) return "";
+    var lang = document.documentElement.lang || "en";
+    var dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+    if (dateOnly) {
+      var day = new Date(Number(dateOnly[1]), Number(dateOnly[2]) - 1, Number(dateOnly[3]));
+      return new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(day);
+    }
+    if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
+      var when = new Date(raw);
+      if (!isNaN(when.getTime())) {
+        return new Intl.DateTimeFormat(lang, {
+          dateStyle: "long",
+          timeStyle: "short",
+          timeZone: "America/Sao_Paulo"
+        }).format(when);
+      }
+    }
+    return raw;
+  }
+
+  function periodoTexto(periodo) {
+    if (!periodo) return "";
+    if (typeof periodo.texto === "string" && periodo.texto.trim()) return periodo.texto.trim();
+    var inicio = formatWhen(periodo.inicio);
+    var fim = formatWhen(periodo.fim);
+    if (inicio && fim) return inicio + " – " + fim;
+    return inicio || fim;
+  }
+
+  function retornoTexto(retorno) {
+    if (!retorno) return "";
+    if (typeof retorno.texto === "string" && retorno.texto.trim()) return retorno.texto.trim();
+    return formatWhen(retorno.quando);
+  }
+
+  function setLine(id, label, value) {
+    var line = document.getElementById(id);
+    if (!line) return false;
+    var text = (value || "").trim();
+    line.hidden = !text;
+    line.textContent = "";
+    if (!text) return false;
+    if (label) {
+      var rotulo = document.createElement("span");
+      rotulo.className = "rotulo";
+      rotulo.textContent = label;
+      line.appendChild(rotulo);
+      line.appendChild(document.createTextNode(" " + text));
+    } else {
+      line.textContent = text;
+    }
+    return true;
   }
 
   function fillMessage(data) {
@@ -85,6 +144,10 @@
     if (titulo) titulo.textContent = data.titulo || "";
     document.title = (data.titulo || "Maintenance") + " — LIneA";
     fillMessage(data);
+    var temPeriodo = setLine("periodo-linha", (data.periodo && data.periodo.rotulo) || "", periodoTexto(data.periodo));
+    var temRetorno = setLine("retorno-linha", (data.retorno && data.retorno.rotulo) || "", retornoTexto(data.retorno));
+    var janela = document.getElementById("janela");
+    if (janela) janela.hidden = !(temPeriodo || temRetorno);
     var assinatura = document.getElementById("assinatura");
     if (assinatura) assinatura.textContent = data.assinatura || "";
     var instituicao = document.getElementById("instituicao");
@@ -102,7 +165,10 @@
       return response.json();
     })
     .then(function (data) {
-      apply(Object.assign({}, defaults, data));
+      var merged = Object.assign({}, defaults, data);
+      if (data.periodo) merged.periodo = Object.assign({}, defaults.periodo, data.periodo);
+      if (data.retorno) merged.retorno = Object.assign({}, defaults.retorno, data.retorno);
+      apply(merged);
     })
     .catch(function () {});
 })();

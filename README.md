@@ -16,6 +16,13 @@ O conteúdo fica em [`html/content.json`](html/content.json). Salve o arquivo e 
 | `mensagem` | Parágrafo. `{contato}` vira o link de contato |
 | `contatoRotulo` | Texto desse link, por exemplo `contact us` |
 | `contatoUrl` | `mailto:` ou `http(s)` |
+| `periodo.rotulo` | Rótulo da janela, por exemplo `Maintenance window` |
+| `periodo.inicio` | Início. `AAAA-MM-DD` ou `2026-11-03T09:00:00-03:00`. Vazio omite |
+| `periodo.fim` | Fim, no mesmo formato. Vazio omite |
+| `periodo.texto` | Frase livre. Se preenchida, substitui início e fim |
+| `retorno.rotulo` | Rótulo da previsão, por exemplo `Expected return` |
+| `retorno.quando` | Data esperada, no mesmo formato das datas do período |
+| `retorno.texto` | Frase livre, por exemplo `Today, 6 pm`. Se preenchida, substitui `quando` |
 | `assinatura` | Linha à direita, por exemplo `— LIneA IT Team` |
 | `instituicao` | Texto ao lado da marca. Uma quebra de linha no JSON vira outra linha na página |
 | `logo` | Arquivo em `html/images/` ou URL `http(s)` |
@@ -30,6 +37,13 @@ Exemplo de uma instância só para o catálogo:
   "mensagem": "The catalog is under maintenance. If you need assistance, please feel free to {contato}.",
   "contatoRotulo": "contact us",
   "contatoUrl": "mailto:helpdesk@linea.org.br",
+  "periodo": {
+    "inicio": "2026-11-03T09:00:00-03:00",
+    "fim": "2026-11-03T18:00:00-03:00"
+  },
+  "retorno": {
+    "texto": "Today, 6 pm"
+  },
   "assinatura": "— LIneA IT Team"
 }
 ```
